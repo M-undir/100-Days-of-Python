@@ -26,6 +26,3 @@ while columns_to_complete > 0:
 
 screen = Screen()
 screen.exitonclick()
-
-
-
