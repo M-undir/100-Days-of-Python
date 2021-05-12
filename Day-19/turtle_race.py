@@ -18,7 +18,6 @@ for i in range(len(colours)):
     new_turtle.penup()
     new_turtle.goto(-230, y)
     y += 30
-    # new_turtle.forward(random.randint(1, 10))
     turtles.append(new_turtle)
 
 
