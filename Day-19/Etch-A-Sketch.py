@@ -1,31 +1,31 @@
 from turtle import Turtle, Screen
 
-new_turtle = Turtle()
+mun = Turtle()
 screen = Screen()
 
 
 def forward():
-    new_turtle.fd(10)
+    mun.fd(10)
 
 
 def turn_right():
-    new_turtle.right(10)
+    mun.right(10)
 
 
 def turn_left():
-    new_turtle.left(10)
+    mun.left(10)
 
 
 def backward():
-    new_turtle.bk(10)
+    mun.bk(10)
 
 
 def clear_drawing():
-    new_turtle.reset()
+    mun.reset()
 
 
 def undo():
-    new_turtle.undo()
+    mun.undo()
 
 
 screen.listen()
