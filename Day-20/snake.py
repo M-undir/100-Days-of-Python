@@ -1,6 +1,10 @@
 from turtle import Turtle
 STARTING_POS = [0, -20, -40]
 MOVING_DISTANCE = 20
+UP = 90
+DOWN = 270
+LEFT = 180
+RIGHT = 0
 
 
 class Snake:
@@ -8,6 +12,7 @@ class Snake:
     def __init__(self):
         self.snake_list = []
         self.create_snake()
+        self.head = self.snake_list[0]
 
     def create_snake(self):
         for pos in STARTING_POS:
@@ -23,9 +28,24 @@ class Snake:
             prev_x = self.snake_list[snake_num - 1].xcor()
             prev_y = self.snake_list[snake_num - 1].ycor()
             self.snake_list[snake_num].goto(prev_x, prev_y)
-        self.snake_list[0].fd(MOVING_DISTANCE)
-        # self.snake_list[0].left(90)
+        self.head.fd(MOVING_DISTANCE)
+        # self.head.left(90)
 
+    def up(self):
+        if self.head.heading() != DOWN:
+            self.head.setheading(UP)
+
+    def down(self):
+        if self.head.heading() != UP:
+            self.head.setheading(DOWN)
+
+    def left(self):
+        if self.head.heading() != RIGHT:
+            self.head.setheading(LEFT)
+
+    def right(self):
+        if self.head.heading() != LEFT:
+            self.head.setheading(RIGHT)
 
 # --PREVIOUS CODE-- #
 
@@ -34,7 +54,7 @@ class Snake:
 #         prev_x = self.snake_list[snake_num-1].xcor()
 #         prev_y = self.snake_list[snake_num-1].ycor()
 #         self.snake_list[snake_num].goto(prev_x, prev_y)
-#     self.snake_list[0].fd(20)
+#     self.head.fd(20)
     # pass
 
 # for snake_num in range(len(snakes)-1, 0, -1):
