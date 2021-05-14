@@ -27,4 +27,3 @@ class ScoreBoard(Turtle):
         self.goto(-50, 0)
         self.write("Game Over", font=("Times New Roman", 20, "normal"))
 
-

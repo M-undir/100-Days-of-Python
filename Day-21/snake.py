@@ -44,13 +44,9 @@ class Snake:
         if self.head.heading() != LEFT:
             self.head.setheading(RIGHT)
 
-
-
-
     def move(self):
         for snake_num in range(len(self.snake_list) - 1, 0, -1):
             prev_x = self.snake_list[snake_num - 1].xcor()
             prev_y = self.snake_list[snake_num - 1].ycor()
             self.snake_list[snake_num].goto(prev_x, prev_y)
         self.head.fd(20)
-
