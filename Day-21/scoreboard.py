@@ -1,7 +1,7 @@
 from turtle import Turtle
 
 ALIGNMENT = "center"
-FONT = ("Courier", 12, "normal")  # looks better than Times New Roman
+FONT = ("Courier", 15, "normal")  # looks better than Times New Roman
 
 
 class ScoreBoard(Turtle):
@@ -11,7 +11,7 @@ class ScoreBoard(Turtle):
         self.color("White")
         self.penup()
         self.ht()
-        self.goto(0, 280)
+        self.goto(0, 270)
         self.score = 0
         self.update_score()
 
@@ -22,4 +22,9 @@ class ScoreBoard(Turtle):
         self.score += 1
         self.clear()
         self.update_score()
+
+    def game_over(self):  # wall_collision too specific (will die if hit itself too)
+        self.goto(-50, 0)
+        self.write("Game Over", font=("Times New Roman", 20, "normal"))
+
 
