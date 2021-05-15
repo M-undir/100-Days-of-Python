@@ -4,7 +4,7 @@ from turtle import Turtle
 STRETCH_WIDTH = 1
 STRETCH_HEIGHT = 5
 HEADING = 90
-FORWARD_MOVEMENT = 20
+FORWARD_MOVEMENT = 30
 
 
 class Paddle(Turtle):
