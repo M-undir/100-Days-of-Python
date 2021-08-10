@@ -39,12 +39,12 @@ while game_on:
         ball.x_bounce()
 
     # Right paddle miss
-    if ball.xcor() > 400:
+    if ball.xcor() > 390:
         # print("Out of bounds")
         ball.reset_pos()
         score.add_l_score()
     # Left paddle miss
-    if ball.xcor() < -400:
+    if ball.xcor() < -390:
         ball.reset_pos()
         score.add_r_score()
 screen.exitonclick()
