@@ -18,4 +18,5 @@ for number in range(nr_numbers):
 
 # print(password)
 random_password = ''.join(random.sample(password, len(password)))
+# randomises the whole password if the exact len is specified
 print(random_password)
