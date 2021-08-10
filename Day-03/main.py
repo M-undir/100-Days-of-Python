@@ -18,7 +18,6 @@ if left_or_right == 'left':
             print("You have encountered a pack of wolves and scream as they ravage your body.")
         elif red_blue_yellow == 'red':
             print("You've been burnt by a fire and been reduced to ashes.")
-
         else:
             print("Game Over.")
     else:
