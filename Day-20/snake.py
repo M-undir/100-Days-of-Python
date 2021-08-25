@@ -1,76 +1,81 @@
 from turtle import Turtle
-STARTING_POS = [0, -20, -40]
-MOVING_DISTANCE = 20
-UP = 90
-DOWN = 270
-LEFT = 180
-RIGHT = 0
+NORTH = 90
+EAST = 0
+SOUTH = 270
+WEST = 180
 
 
 class Snake:
-
     def __init__(self):
-        self.snake_list = []
+        self.x_pos = [0, -20, -40]
+        self.snake_body = []
         self.create_snake()
-        self.head = self.snake_list[0]
 
     def create_snake(self):
-        for pos in STARTING_POS:
-            snake_body = Turtle(shape="square")
-            snake_body.penup()
-            snake_body.color('white')
-            snake_body.setx(pos)
-            self.snake_list.append(snake_body)
+        for body in self.x_pos:
+            snake_segment = Turtle(shape="square")
+            snake_segment.penup()
+            snake_segment.color("white")
+            snake_segment.setx(body)
+            self.snake_body.append(snake_segment)
 
-    def move(self):
-        # self.create_snake()
-        for snake_num in range(len(self.snake_list) - 1, 0, -1):
-            prev_x = self.snake_list[snake_num - 1].xcor()
-            prev_y = self.snake_list[snake_num - 1].ycor()
-            self.snake_list[snake_num].goto(prev_x, prev_y)
-        self.head.fd(MOVING_DISTANCE)
-        # self.head.left(90)
+    def forward(self):
+        if self.snake_body[0].heading() != SOUTH:
+            self.snake_body[0].setheading(NORTH)
 
-    def up(self):
-        if self.head.heading() != DOWN:
-            self.head.setheading(UP)
-
-    def down(self):
-        if self.head.heading() != UP:
-            self.head.setheading(DOWN)
-
-    def left(self):
-        if self.head.heading() != RIGHT:
-            self.head.setheading(LEFT)
+    def backwards(self):
+        if self.snake_body[0].heading() != NORTH:
+            self.snake_body[0].setheading(SOUTH)
 
     def right(self):
-        if self.head.heading() != LEFT:
-            self.head.setheading(RIGHT)
+        if self.snake_body[0].heading() != WEST:
+            self.snake_body[0].setheading(EAST)
 
-# --PREVIOUS CODE-- #
+    def left(self):
+        if self.snake_body[0].heading() != EAST:
+            self.snake_body[0].setheading(WEST)
 
-# def snake_movement(self):
-#     for snake_num in range(len(self.snake_list)-1, 0, -1):
-#         prev_x = self.snake_list[snake_num-1].xcor()
-#         prev_y = self.snake_list[snake_num-1].ycor()
-#         self.snake_list[snake_num].goto(prev_x, prev_y)
-#     self.head.fd(20)
-    # pass
+    # def create_multiple_segments(self):
+    #     for _ in range(2):
+    #         self.create_snake_segment()
 
-# for snake_num in range(len(snakes)-1, 0, -1):
-#     # previous_co = snakes[snake_num-1].position()
-#     previous_x = snakes[snake_num-1].xcor()
-#     previous_y = snakes[snake_num-1].ycor()
-#     snakes[snake_num].goto(previous_x, previous_y)
+    def move(self):
+        for movement in range(len(self.snake_body) - 1, 0, -1):
+            prev_position = self.snake_body[movement-1].position()
+            self.snake_body[movement].goto(prev_position)
+
+        self.snake_body[0].fd(20)
+        # self.snake_body[0].left(90)
 
 
-# starting_pos = [0, -20, -40]
-# snakes = []
+
+# for part in snake_body:
+#     part.fd(20)
+# snake_body[0].fd(10)
+# snake_body[0].left(90)
+#    # screen.update()
+#    # time.sleep(1)
+
+# snake_body[0].left(90)
+# for movement in range(len(snake_body) - 1, 0, -1):
+#     # snake_body[0].fd(20)
+#     prev_position = snake_body[movement-1].position()
+#     snake_body[movement].goto(prev_position)
+#     # snake_body[0].fd(20)
+#     # snake_body[0].left(90)
 #
-# for position in starting_pos:
-#     snake_body = Turtle(shape='square')
-#     snake_body.penup()
-#     snake_body.color('white')
-#     snake_body.setx(position)
-#     snakes.append(snake_body)
+# # Essentially want the other segments to follow the first segment of the snake body.
+# snake_body[0].fd(20)
+# # snake_body[0].right(90)
+
+# 3 squares, looks like they'll be connected to each other.
+
+# x_pos =
 #
+#
+# for body in x_pos:
+#     snake_segment = Turtle(shape="square")
+#     snake_segment.penup()
+#     snake_segment.color("white")
+#     snake_segment.setx(body)
+#     snake_body.append(snake_segment)

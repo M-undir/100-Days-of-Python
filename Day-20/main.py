@@ -4,26 +4,24 @@ import time
 
 screen = Screen()
 screen.setup(width=600, height=600)
-screen.bgcolor('black')
+screen.bgcolor("black")
 screen.title("Snake")
-screen.getshapes()
+screen.listen()
 screen.tracer(0)
 
 snake = Snake()
-
-screen.listen()
-screen.onkey(key="Up", fun=snake.up)
-screen.onkey(key="Down", fun=snake.down)
-screen.onkey(key="Left", fun=snake.left)
-screen.onkey(key="Right", fun=snake.right)
+screen.onkey(fun=snake.forward, key ="Up")
+screen.onkey(fun=snake.backwards, key ="Down")
+screen.onkey(fun=snake.right, key ="Right")
+screen.onkey(fun=snake.left, key ="Left")
 
 
-is_game_on = True
-
-while is_game_on:
+game = True
+while game:
     screen.update()
     time.sleep(0.1)
 
     snake.move()
+
 
 screen.exitonclick()
