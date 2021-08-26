@@ -1,50 +1,55 @@
 from turtle import Screen
 from snake import Snake
 from food import Food
-from scoreboard import ScoreBoard
+from scoreboard import Scoreboard
 import time
 
 screen = Screen()
 screen.setup(width=600, height=600)
-screen.bgcolor('black')
+screen.bgcolor("black")
 screen.title("Snake")
-screen.tracer(0)
 screen.listen()
+screen.tracer(0)
 
 snake = Snake()
+
+screen.onkey(fun=snake.forward, key="Up")
+screen.onkey(fun=snake.backwards, key="Down")
+screen.onkey(fun=snake.right, key="Right")
+screen.onkey(fun=snake.left, key="Left")
+
 food = Food()
-scoreboard = ScoreBoard()
+scoreboard = Scoreboard()
 
-screen.onkey(key="Up", fun=snake.up)
-screen.onkey(key="Down", fun=snake.down)
-screen.onkey(key="Left", fun=snake.left)
-screen.onkey(key="Right", fun=snake.right)
-
-
-is_game_on = True
-while is_game_on:
+game = True
+while game:
     screen.update()
     time.sleep(0.1)
     snake.move()
 
-    # Detect food collision
-    if snake.head.distance(food) < 15:
-        food.new_location()
-        snake.extend()
-        scoreboard.add()
-        # print("Test to see if collision")
+    # Detect collision with wall
+    # end_wall = (-280, -0)
+    # if snake.snake_head.distance():  # or if snake.snake_head.distance(-280):
+    #     print(random.randint(1,100))
 
-    # Detecting wall collision
-    if snake.head.xcor() > 280 or snake.head.xcor() < -280 or snake.head.ycor() > 280 or snake.head.ycor() < -280:
-        is_game_on = False
+    if snake.snake_head.xcor() < -285 or snake.snake_head.ycor() < -285 or snake.snake_head.xcor() > 285 or snake.snake_head.ycor() > 295:
+        # print("You've surpassed your limits")
+        # print(random.randint(1, 100))
         scoreboard.game_over()
+        game = False
 
-    # Tail Collision
-    # if head hit tail therefore game_over
-    for body in snake.snake_list[1:]:
-        if snake.head.distance(body) < 10:
-            is_game_on = False
+    # Detect collision with tail
+    for i in snake.snake_body[1:]:
+        if snake.snake_head.distance(i) < 15:
             scoreboard.game_over()
+            game = False
+
+    # Detect collision with food
+    distance = snake.snake_head.distance(food)
+    if distance < 20:
+        food.new_location()
+        scoreboard.add_score()
+        snake.extend()
 
 
 screen.exitonclick()
