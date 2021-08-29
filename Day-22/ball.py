@@ -2,29 +2,27 @@ from turtle import Turtle
 
 
 class Ball(Turtle):
-
     def __init__(self):
-        super().__init__()
-        self.shape('circle')
-        self.color('white')
+        super().__init__(shape='circle')
         self.penup()
+        self.color('white')
         self.x_move = 10
         self.y_move = 10
-        self.ball_speed = 0.03
 
     def move(self):
-        new_x = self.xcor() + self.x_move
-        new_y = self.ycor() + self.y_move
-        self.goto(new_x, new_y)
+        x = self.xcor() + self.x_move
+        # print(x)
+        y = self.ycor() + self.y_move
+        # print(y)
+        # print(x, y)
+        self.goto(x, y)
 
-    def y_bounce(self):
+    def bounce(self):
         self.y_move *= -1
+        # print(self.y_move)
 
-    def x_bounce(self):
+    def bounce_2(self):
         self.x_move *= -1
-        # self.ball_speed *= 0.9
 
-    def reset_pos(self):
+    def reset_position(self):
         self.goto(0, 0)
-        # self.ball_speed = 0.03
-        self.x_bounce()

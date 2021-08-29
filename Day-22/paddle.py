@@ -1,25 +1,39 @@
 from turtle import Turtle
-# RIGHT_POSITION = (350, 0)
-# LEFT_POSITION = (-350, 0)
-STRETCH_WIDTH = 1
-STRETCH_HEIGHT = 5
-HEADING = 90
-FORWARD_MOVEMENT = 30
+COLOR = 'white'
 
 
 class Paddle(Turtle):
-    
     def __init__(self, position):
-        super().__init__()
-        self.shape('square')
-        self.goto(position)
+        super().__init__(shape='square')
         self.penup()
-        self.setheading(HEADING)
-        self.shapesize(stretch_wid=STRETCH_WIDTH, stretch_len=STRETCH_HEIGHT)
-        self.color('white')
+        self.color(COLOR)
+        self.shapesize(stretch_wid=4, stretch_len=1)
+        self.goto(position)
+        self.forward_movement = 25
+        self.backward_movement = 25
 
-    def up(self):
-        self.fd(FORWARD_MOVEMENT)
+    # def right_paddle_position(self):
+    #     self.goto(375, 0)
+    #
+    # def left_paddle_position(self):
+    #     self.goto(-375, 0)
 
-    def down(self):
-        self.bk(FORWARD_MOVEMENT)
+    def forwards(self):
+        y = self.ycor()
+        y += self.forward_movement
+        return self.sety(y)
+
+    def backwards(self):
+        y = self.ycor()
+        y -= self.backward_movement
+        return self.sety(y)
+
+    def stop_forward(self):
+        self.forward_movement = 0
+
+    def stop_backward(self):
+        self.backward_movement = 0
+
+    def reset_values(self):
+        self.backward_movement = 25
+        self.forward_movement = 25
